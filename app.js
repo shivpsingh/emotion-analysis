@@ -227,33 +227,38 @@ IMPORTANT GUIDELINES:
     }
 
     sanitizeResponse(response) {
-        // List of words/phrases to filter out or replace
-        const judgmentalTerms = [
-            /\b(disorder|disorders)\b/gi,
-            /\b(diagnosis|diagnose|diagnosed)\b/gi,
-            /\b(symptom|symptoms)\b/gi,
-            /\b(condition|conditions)\b/gi,
-            /\b(treatment|treatments)\b/gi,
-            /\b(therapy|therapist)\b/gi,
-            /\b(patient|patients)\b/gi,
-            /\b(abnormal|dysfunction)\b/gi,
-            /\b(pathological|pathology)\b/gi,
-            /\b(illness|disease)\b/gi
-        ];
+        // Map of terms to filter and their safer alternatives
+        const replacements = {
+            'disorder': 'pattern',
+            'disorders': 'patterns',
+            'diagnosis': 'observation',
+            'diagnose': 'observe',
+            'diagnosed': 'observed',
+            'symptom': 'sign',
+            'symptoms': 'signs',
+            'condition': 'experience',
+            'conditions': 'experiences',
+            'treatment': 'support',
+            'treatments': 'support options',
+            'therapy': 'counseling',
+            'therapist': 'counselor',
+            'patient': 'person',
+            'patients': 'people',
+            'abnormal': 'different',
+            'dysfunction': 'challenge',
+            'pathological': 'pattern',
+            'pathology': 'pattern',
+            'illness': 'challenge',
+            'disease': 'challenge'
+        };
 
         let sanitized = response;
 
         // Replace judgmental terms with softer alternatives
-        sanitized = sanitized.replace(/\b(disorder|disorders)\b/gi, 'pattern');
-        sanitized = sanitized.replace(/\b(diagnosis|diagnose|diagnosed)\b/gi, 'observation');
-        sanitized = sanitized.replace(/\b(symptom|symptoms)\b/gi, 'sign');
-        sanitized = sanitized.replace(/\b(condition|conditions)\b/gi, 'experience');
-        sanitized = sanitized.replace(/\b(treatment|treatments)\b/gi, 'support');
-        sanitized = sanitized.replace(/\b(therapy|therapist)\b/gi, 'counseling or a counselor');
-        sanitized = sanitized.replace(/\b(patient|patients)\b/gi, 'person');
-        sanitized = sanitized.replace(/\b(abnormal|dysfunction)\b/gi, 'different');
-        sanitized = sanitized.replace(/\b(pathological|pathology)\b/gi, 'pattern');
-        sanitized = sanitized.replace(/\b(illness|disease)\b/gi, 'challenge');
+        for (const [term, replacement] of Object.entries(replacements)) {
+            const regex = new RegExp(`\\b${term}\\b`, 'gi');
+            sanitized = sanitized.replace(regex, replacement);
+        }
 
         return sanitized;
     }
@@ -303,10 +308,21 @@ IMPORTANT GUIDELINES:
     displayResults(aiResponse) {
         const sections = this.parseAndFormatResponse(aiResponse);
         
+        // Improved fallback: get first complete sentence or paragraph
+        let summaryFallback = aiResponse;
+        if (!sections.summary) {
+            const firstParagraph = aiResponse.split('\n\n')[0] || aiResponse;
+            const sentences = firstParagraph.match(/[^.!?]+[.!?]+/g) || [firstParagraph];
+            summaryFallback = sentences.slice(0, 2).join(' ').trim();
+            if (summaryFallback.length > 400) {
+                summaryFallback = summaryFallback.substring(0, 400).trim() + '...';
+            }
+        }
+        
         const resultsHTML = `
             <div class="result-section">
                 <h3>💙 Your Emotional Well-being Summary</h3>
-                <p>${sections.summary || aiResponse.substring(0, 300) + '...'}</p>
+                <p>${sections.summary || summaryFallback}</p>
             </div>
 
             ${sections.strengths.length > 0 ? `

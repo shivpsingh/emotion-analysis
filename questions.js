@@ -1,4 +1,4 @@
-// 30+ behavior-focused questions for emotional well-being assessment
+// 35 behavior-focused questions for emotional well-being assessment
 // Each question has English (en) and Hindi (hi) versions
 
 const QUESTIONS = [

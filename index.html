@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Analysis - Understand Your Emotional Well-being</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Home/Config Page -->
+        <div id="config-page" class="page active">
+            <div class="header">
+                <h1>Emotion Analysis</h1>
+                <p class="subtitle">A compassionate tool to understand your emotional well-being</p>
+            </div>
+            
+            <div class="config-form">
+                <div class="form-group">
+                    <label for="openai-base-url">OpenAI Base URL:</label>
+                    <input type="text" id="openai-base-url" placeholder="https://api.openai.com/v1" value="https://api.openai.com/v1">
+                    <small>Enter the OpenAI API base URL</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="api-key">API Key:</label>
+                    <input type="password" id="api-key" placeholder="sk-...">
+                    <small>Your API key is stored locally and never shared</small>
+                </div>
+                
+                <div class="form-group">
+                    <label>Language / भाषा:</label>
+                    <div class="language-toggle">
+                        <button type="button" class="lang-btn active" data-lang="en">English</button>
+                        <button type="button" class="lang-btn" data-lang="hi">हिंदी</button>
+                    </div>
+                </div>
+                
+                <button id="start-btn" class="primary-btn">Start Assessment</button>
+            </div>
+        </div>
+
+        <!-- Questions Page -->
+        <div id="questions-page" class="page">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            
+            <div class="question-container">
+                <div class="question-header">
+                    <span class="question-number" id="question-number">Question 1 of 30</span>
+                </div>
+                
+                <div class="question-content">
+                    <h2 id="question-text" class="question-text"></h2>
+                    
+                    <div class="slider-container">
+                        <div class="slider-labels">
+                            <span id="label-low">Strongly Disagree</span>
+                            <span id="label-high">Strongly Agree</span>
+                        </div>
+                        <input type="range" id="answer-slider" min="1" max="5" value="3" class="slider">
+                        <div class="slider-value" id="slider-value">3</div>
+                    </div>
+                </div>
+                
+                <div class="navigation-buttons">
+                    <button id="back-btn" class="secondary-btn">Back</button>
+                    <button id="next-btn" class="primary-btn">Next</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Loading Page -->
+        <div id="loading-page" class="page">
+            <div class="loading-container">
+                <div class="spinner"></div>
+                <h2>Analyzing your responses...</h2>
+                <p>Please wait while we prepare your personalized insights</p>
+            </div>
+        </div>
+
+        <!-- Results Page -->
+        <div id="results-page" class="page">
+            <div class="results-container">
+                <div class="header">
+                    <h1>Your Emotional Insights</h1>
+                    <p class="subtitle">A compassionate understanding of your emotional well-being</p>
+                </div>
+                
+                <div id="results-content" class="results-content">
+                    <!-- Results will be inserted here -->
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="restart-btn" class="primary-btn">Start New Assessment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="questions.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

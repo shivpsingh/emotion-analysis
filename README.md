@@ -1,14 +1,15 @@
 # Emotion Analysis Web App
 
-A compassionate, browser-based tool to help understand your emotional well-being. This application uses behavior-focused questions and AI-powered insights to provide supportive feedback about your emotional health.
+A compassionate, browser-based tool to help understand your emotional well-being. This application uses 35 behavior-focused questions and provides a downloadable report that can be used with any AI chat engine for personalized insights.
 
 ## ✨ Features
 
-- **Privacy-First**: All data is processed locally. Your API key is never shared or stored on any server.
+- **Privacy-First**: All data is processed locally in your browser. Nothing is sent to any server.
 - **Bilingual Support**: Full support for English and Hindi (हिंदी) languages
 - **35 Thoughtful Questions**: Carefully crafted behavior-focused questions covering various aspects of emotional well-being
-- **AI-Powered Insights**: Uses OpenAI to generate compassionate, non-judgmental feedback
-- **Safe & Supportive**: Automatically filters out diagnostic or judgmental language
+- **Downloadable Report**: Get a text file with all your responses and a ready-to-use AI prompt
+- **Universal AI Compatibility**: Use the report with ChatGPT, Claude, Gemini, or any AI chat engine
+- **No API Key Required**: No configuration needed - just answer questions and download your report
 - **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **No Installation Required**: Runs entirely in your web browser
 
@@ -18,27 +19,24 @@ Visit the live application: [https://shivpsingh.github.io/emotion-analysis/](htt
 
 ## 📋 How to Use
 
-1. **Enter Your API Credentials**
-   - Provide your OpenAI API Base URL (default: `https://api.openai.com/v1`)
-   - Enter your OpenAI API Key (starts with `sk-...`)
-   - Your API key is stored only in your browser's memory and never sent anywhere except to OpenAI
-
-2. **Choose Your Language**
+1. **Choose Your Language**
    - Select either English or हिंदी based on your preference
 
-3. **Answer the Questions**
+2. **Answer the Questions**
    - You'll be presented with 35 questions about your emotional well-being
    - Use the slider to rate each statement from 1 (Strongly Disagree) to 5 (Strongly Agree)
    - Navigate freely between questions using Back/Next buttons
    - Your answers are automatically saved as you progress
 
-4. **Review Your Insights**
-   - After completing all questions, the app analyzes your responses
-   - You'll receive personalized insights including:
-     - Emotional well-being summary
-     - Your strengths and positive patterns
-     - Areas where additional support might be helpful
-     - Practical wellness tips
+3. **Download Your Report**
+   - After completing all questions, click the "Download Assessment Report" button
+   - A text file will be downloaded containing all your responses and a ready-to-use prompt
+
+4. **Get AI Insights**
+   - Open the downloaded text file
+   - Copy the entire contents
+   - Paste it into any AI chat service (ChatGPT, Claude, Gemini, etc.)
+   - Receive personalized, compassionate insights about your emotional well-being
 
 5. **Start Over**
    - You can restart the assessment at any time
@@ -77,23 +75,13 @@ This app is already configured for GitHub Pages. To deploy:
 4. Click "Save"
 5. Your app will be available at `https://[your-username].github.io/emotion-analysis/`
 
-## 🔑 Getting an OpenAI API Key
-
-1. Visit [OpenAI's website](https://platform.openai.com/)
-2. Sign up or log in to your account
-3. Navigate to API Keys section
-4. Create a new API key
-5. Copy the key and use it in the application
-
-**Note**: API usage will incur costs based on OpenAI's pricing. Each assessment typically uses a small amount of tokens.
-
 ## 🛡️ Privacy & Security
 
 - **No Server-Side Storage**: This app runs entirely in your browser
-- **No Data Collection**: We don't collect, store, or transmit your responses anywhere except to OpenAI for analysis
+- **No Data Collection**: We don't collect, store, or transmit your responses to any server
 - **Local Processing**: All question navigation and answer storage happens in your browser's memory
-- **Secure Communication**: API calls to OpenAI use HTTPS encryption
-- **API Key Safety**: Your API key is only stored in browser memory during your session
+- **Complete Privacy**: Your downloaded report stays on your device - you control where to use it
+- **No API Keys Required**: No configuration or credentials needed
 
 ## 🧠 About the Questions
 
@@ -127,7 +115,7 @@ This tool is designed for self-reflection and personal growth. It is **NOT** a s
 - **HTML5**: Semantic markup and structure
 - **CSS3**: Modern styling with custom properties and animations
 - **Vanilla JavaScript**: No frameworks or libraries required
-- **OpenAI API**: GPT-3.5-turbo for generating insights
+- **File Download API**: Uses Blob and URL.createObjectURL for report downloads
 
 ## 📄 License
 
